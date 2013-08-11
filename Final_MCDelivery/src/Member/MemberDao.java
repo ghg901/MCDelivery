@@ -52,27 +52,58 @@ public class MemberDao {
 		if (pstmt != null) {
 			try {
 				pstmt.close();
+				System.out.println("disconnect success");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (stmt != null) {
 			try {
 				stmt.close();
+				System.out.println("disconnect success");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (conn != null) {
 			try {
 				conn.close();
+				System.out.println("disconnect success");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else if (rs != null) {
 			try {
 				rs.close();
+				System.out.println("disconnect success");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public boolean setLogin(String id, String pw){
+		boolean success = false;		
+		connect();
+		String sql = "";
+		try{
+			stmt = conn.createStatement();
+			ResultSet rs = null;
+			
+			sql =	" select * from mc_member ";
+			sql+= 	" where ";
+			sql+= 	" member_email='"+ id +"' ";
+			sql+= 	" and member_password='"+ pw+"' ";			
+			
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()){
+				success = true;
+			}
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			disconnect();
+		}
+		return success;
 	}
 }
