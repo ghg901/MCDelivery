@@ -8,9 +8,29 @@ public class Board {
 	private String board_date;			//글 작성일자
 	private String board_writer;		//글 작성자
 	private String board_header;		//글 말머리
-	private int board_readCount;		//글 조회수
+	private int board_read_count;		//글 조회수
 	private int board_groupId;			//그룹 번호
-	private String board_sequenceNo;	//시퀀스 번호
+	private String board_sequence_no;	//시퀀스 번호
+	
+	
+	public Board() {
+	}
+	
+	public Board(int board_id, String board_title, String board_content, 
+					int board_password, String board_date, String board_writer, 
+					String board_header, int board_read_count, 
+					int board_groupId, String board_sequence_no) {
+		this.board_id = board_id;
+		this.board_title = board_title;
+		this.board_content = board_content;
+		this.board_password = board_password;
+		this.board_date = board_date;
+		this.board_writer = board_writer;
+		this.board_header = board_header;
+		this.board_read_count = board_read_count;
+		this.board_groupId = board_groupId;
+		this.board_sequence_no = board_sequence_no;
+	}
 	
 	public int getBoard_id() {
 		return board_id;
@@ -54,11 +74,11 @@ public class Board {
 	public void setBoard_header(String board_header) {
 		this.board_header = board_header;
 	}
-	public int getBoard_readCount() {
-		return board_readCount;
+	public int getBoard_read_count() {
+		return board_read_count;
 	}
-	public void setBoard_readCount(int board_readCount) {
-		this.board_readCount = board_readCount;
+	public void setBoard_read_count(int board_read_count) {
+		this.board_read_count = board_read_count;
 	}
 	public int getBoard_groupId() {
 		return board_groupId;
@@ -66,10 +86,21 @@ public class Board {
 	public void setBoard_groupId(int board_groupId) {
 		this.board_groupId = board_groupId;
 	}
-	public String getBoard_sequenceNo() {
-		return board_sequenceNo;
+	public String getBoard_sequence_no() {
+		return board_sequence_no;
 	}
-	public void setBoard_sequenceNo(String board_sequenceNo) {
-		this.board_sequenceNo = board_sequenceNo;
+	public void setBoard_sequence_no(String board_sequence_no) {
+		this.board_sequence_no = board_sequence_no;
+	}
+	
+	//게시물의 시퀀스번호에 따른 레벨 반환
+	public int getLevel()
+	{
+		if( board_sequence_no == null			)	{ return -1; }
+		if( board_sequence_no.length() != 16 	) 	{ return -1; }
+		if( board_sequence_no.endsWith("999999")) 	{ return 0; }
+		if( board_sequence_no.endsWith("9999")	) 	{ return 1; }
+		if( board_sequence_no.endsWith("99")	) 	{ return 2; }
+		return 3;
 	}
 }

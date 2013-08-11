@@ -6,6 +6,13 @@
 <title>Bottom Page</title>
 </head>
 <body>
-Bottom Page
+<center>
+	<font face="휴먼가는샘체" size="4" color="#000000">
+	한국데이터베이스진흥원 취업아카데미 3기 <br/>
+	데이터베이스 개발자 과정 <br/>
+	서울과학기술대학교 & 서울여자대학교 <br/> 
+	권민석 김혜중 배주홍 양은지 최경모 황환희 <br/>
+	</font>
+</center>
 </body>
 </html>
